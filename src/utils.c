@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 23:21:36 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/25 02:01:38 by fde-jesu         ###   ########.fr       */
+/*   Created: 2024/01/25 01:42:11 by fde-jesu          #+#    #+#             */
+/*   Updated: 2024/01/25 01:46:35 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-int	ft_count(char const *s, char c)
+t_stack	*ft_lstnew(int x)
 {
-	int	i;
-	int	count;
+	t_stack	*new_node;
 
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
-			count++;
-			while (s[i] != c && s[i])
-				i++;
-		}
-		else
-			i++;
-	}
-	return (count);
+	new_node = malloc(sizeof(t_stack));
+	if (!new_node)
+		return (0);
+	new_node->x = x;
+	new_node->next = NULL;
+	return (new_node);
 }

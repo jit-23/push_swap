@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count.c                                         :+:      :+:    :+:   */
+/*   handle_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 23:21:36 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/25 02:01:38 by fde-jesu         ###   ########.fr       */
+/*   Created: 2024/01/25 03:40:23 by fde-jesu          #+#    #+#             */
+/*   Updated: 2024/01/25 03:48:31 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-int	ft_count(char const *s, char c)
+void handle_args(int argc, char **argv, t_stack *a)
 {
-	int	i;
-	int	count;
+    int *nbrs;
+    int i;
 
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
-			count++;
-			while (s[i] != c && s[i])
-				i++;
-		}
-		else
-			i++;
-	}
-	return (count);
+    i = -1;
+    nbrs = (int *)malloc(sizeof(int) * (argc - 1));
+    while(++i < argc - 1)
+        nbrs[i] = argv[i];
+    
+    
 }

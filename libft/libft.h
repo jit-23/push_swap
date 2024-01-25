@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:09:14 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/11 23:14:00 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/01/25 03:48:10 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_itoa(int n);
-t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
@@ -95,5 +94,8 @@ int		ft_putchar(char c);
 void	ft_writing(char *str, unsigned int *byte_count);
 char	*ft_firstword(char *command);
 int		ft_count(char const *s, char c);
+long long int	ft_atoll(char *nbr);
+
+
 
 #endif

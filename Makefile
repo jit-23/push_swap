@@ -1,6 +1,6 @@
 NAME =  ps
 CFLAGS = -Wall -Werror -Wextra
-FUN = src/main.c #src/check_args.c src/pipex.c src/free.c
+FUN = src/main.c src/utils.c src/handle_string.c src/handle_args.c
 OBJ = ${FUN:.c=.o}
 LIBFT = -L libft -lft
 MAKE = make -C

@@ -6,7 +6,7 @@
 #    By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 21:29:48 by fde-jesu          #+#    #+#              #
-#    Updated: 2024/01/11 23:20:08 by fde-jesu         ###   ########.fr        #
+#    Updated: 2024/01/25 01:32:57 by fde-jesu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ FUN = ft_isalpha.c \
       ft_putchar.c \
       ft_writing.c \
 	ft_firstword.c \
-      ft_count.c
+      ft_count.c \
+      ft_atoll.c
 
 OBJ = ${FUN:.c=.o}
 
