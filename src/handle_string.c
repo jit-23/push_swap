@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_string.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 03:19:38 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/25 03:39:35 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:26:02 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,18 @@ int repete_nbrs(int *nbr, int size)
 	}
     return 0;
 }
-void fill_stack(int *nbrs, t_stack *head, int size)
-{
-    int i;
-    t_stack *a;
 
-    i = 0;
-    a = head;
-    while(i < size)
-    {
-        if (i == 0)
-			a->x = nbrs[i];
-        else
-        {
-            a->next = ft_lstnew(nbrs[i]);
-            a = a->next;
-        }
-        i++;
-    }
-}
-int	limit_value(int *nbrs)
+int	limit_value(int *nbrs, int size)
 {
 	int i;
 
 	i = 0;
-	while(nbrs[++i])
+	while(i < size)
+	{
 		if (nbrs[i] > INT_MAX || nbrs[i] < INT_MIN)
 			return (1);
+		i++;
+	}
 	return (0);		
 }
 
@@ -98,16 +83,20 @@ void    handle_string(char *string, t_stack *a)
         printf("repeated nbrs\n");
 		return ;
 	} 
-	if (limit_value(nbrs) == 1)
+	if (limit_value(nbrs, size) == 1)
 	{
 		printf("more/less that  int \n");
 		return ;
 	}
 	fill_stack(nbrs, a, size);
-}
-
-/*  while(tmp != NULL) //end of handeling-string
+	while(tmp != NULL) //end of handeling-string
 	{
 		printf("%d\n", tmp->x);
 		tmp = tmp->next;
-	} */
+	}
+	delete_lst(a);
+	for (int s = 0; arr[s]; s++)
+		free(arr[s]);
+	free(arr);
+}
+
