@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_string.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 03:19:38 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/25 17:26:02 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/01/26 06:39:04 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,14 @@ void    handle_string(char *string, t_stack *a)
 	char	**arr;
 	int		size;
 	int *nbrs;
-	t_stack *tmp;
 
-	tmp = a;
+	a = (t_stack *)malloc(sizeof(t_stack));
 	size = ft_count(string, ' ');
+	if (size == 2)
+	{
+		printf("error less than 2 args\n");
+		exit(EXIT_FAILURE);
+	}
     arr = ft_split(string, ' ');
 	nbrs = convert_arr(arr, size);
     if (!nbrs)
@@ -89,14 +93,10 @@ void    handle_string(char *string, t_stack *a)
 		return ;
 	}
 	fill_stack(nbrs, a, size);
-	while(tmp != NULL) //end of handeling-string
-	{
-		printf("%d\n", tmp->x);
-		tmp = tmp->next;
-	}
-	delete_lst(a);
+	delete_lst(a,size);
 	for (int s = 0; arr[s]; s++)
 		free(arr[s]);
 	free(arr);
+	free(nbrs);
 }
 

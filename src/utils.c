@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 01:42:11 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/25 17:30:10 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/01/26 04:07:57 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,32 @@ t_stack	*ft_lstnew(int x)
 	return (new_node);
 }
 
-void delete_lst(t_stack *head)
+void delete_lst(t_stack *head, int size)
 {
-	t_stack *next;
-	t_stack *delete;
+	t_stack *del;
+	int i;
 
-	delete = head;
-	//printf("flag1\n");
-	//printf("flag2\n");
-
-//	next = NULL;
-	while(delete != NULL)
+	i = 0;
+	del = head;
+	while(i < size)
 	{
-		printf("%d\n",delete->x);
-		next = delete->next;
-		free(delete);
-		delete = next;
+		printf("%d\n",del->x);
+		del = del->next;
+		free(head);
+		head = del;
+		i++;
 	}
-//	head = NULL;
 }
 
 void	fill_stack(int *nbrs, t_stack *head, int size)
 {
     int i;
+    t_stack *prev;
     t_stack *a;
 
     i = 0;
     a = head;
+	prev = head;
     while(i < size)
     {
         if (i == 0)
@@ -59,7 +58,14 @@ void	fill_stack(int *nbrs, t_stack *head, int size)
         {
             a->next = ft_lstnew(nbrs[i]);
             a = a->next;
+			a->prev = prev;
+			prev = prev->next;
         }
         i++;
+		if (i == size)
+		{
+			a->next = head;
+			prev->prev = a;
+		}
     }
 }

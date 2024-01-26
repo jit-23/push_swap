@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 03:23:30 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/25 17:21:09 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/01/26 04:03:25 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct s_stack
 {
     int				x;
     struct s_stack	*next;
+    struct s_stack	*prev;
 }t_stack;
 
 # include <stdio.h>
@@ -39,7 +40,7 @@ int repete_nbrs(int *nbr, int size);
 
 //void	delete_nbrs(int *nbrs, int size);
 void handle_args(int argc,char **argv, t_stack *a);
-void delete_lst(t_stack *delete);
+void delete_lst(t_stack *del, int size);
 
 
 #endif
