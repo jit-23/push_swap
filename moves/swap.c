@@ -1,35 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 18:59:41 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/31 23:03:50 by fde-jesu         ###   ########.fr       */
+/*   Created: 2024/01/26 04:31:50 by fde-jesu          #+#    #+#             */
+/*   Updated: 2024/01/31 03:54:58 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int main(int argc, char  *argv[])
+void	swap(t_stack **head)
 {
 	t_stack *a;
+	t_stack *b;
 	
-	a = NULL;
-    if (argc < 2)  // if no numbers 
-		return (ft_printf("Error\n"),1);
-  		//  else if (argc == 2) // if numbers char
-		// handle_string(argv[1], &a);
-    else if (argc >= 3)
-    {
-		handle_args(argc - 1, &argv[1], &a);
-		if (argc == 4)
-		{
-			quick_sort(&a);
-			
-		}
+	a = (*head);
+	b = a->next;
+	if (!a || !b)
+	{
+		perror("not a & b");	
+		exit(1);
 	}
-	//delete_lst((&a), lst_size(&a));
-	return 0;
+	a->prev = b;
+	a->next = b->next;
+	b->prev = 0;
+	b->next->prev = a;
+	b->next = a;
+	(*head) = b;
+}
+
+void sa(t_stack **head)
+{
+	ft_printf("sa\n");
+	swap(head);
+}
+
+void sb(t_stack **head)
+{
+	ft_printf("sb\n");
+	swap(head);
+}
+
+void ss(t_stack **a, t_stack **b)
+{
+	ft_printf("ss\n");
+	swap(a);
+	swap(b);
 }

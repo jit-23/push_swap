@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_string.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 03:19:38 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/26 06:39:04 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/01/31 04:03:37 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ int *convert_arr(char **nbrs, int size)
 	return (arr);
 }
 
-void    handle_string(char *string, t_stack *a)
+void    handle_string(char *string, t_stack **a)
 {
 	char	**arr;
 	int		size;
 	int *nbrs;
 
-	a = (t_stack *)malloc(sizeof(t_stack));
+	*a = (t_stack *)malloc(sizeof(t_stack));
 	size = ft_count(string, ' ');
 	if (size == 2)
 	{

@@ -1,27 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-jesu <fde-jesu@student.42porto.co      +#+  +:+       +#+        */
+/*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 00:54:31 by fde-jesu          #+#    #+#             */
-/*   Updated: 2023/05/03 00:54:32 by fde-jesu         ###   ########.fr       */
+/*   Created: 2024/01/31 16:20:38 by fde-jesu          #+#    #+#             */
+/*   Updated: 2024/01/31 16:39:35 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-t_list	*ft_lstlast(t_list *lst)
-{
-	t_list	*temp;
-
-	if (!lst)
-		return (NULL);
-	temp = lst;
-	while (temp->next != NULL)
-	{
-		temp = temp->next;
-	}
-	return (temp);
-}

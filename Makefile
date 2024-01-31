@@ -1,6 +1,10 @@
-NAME =  ps
+NAME =  push_swap
+
 CFLAGS = -Wall -Werror -Wextra
-FUN = src/main.c src/utils.c src/handle_string.c src/handle_args.c
+FUN = src/main.c src/utils.c src/handle_string.c \
+		src/handle_args.c src/quick_sort.c src/utils2.c src/utils3.c \
+		moves/swap.c moves/rotate.c moves/reverse_rotate.c moves/push.c \
+		 
 OBJ = ${FUN:.c=.o}
 LIBFT = -L libft -lft
 MAKE = make -C
