@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 01:42:11 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/31 23:06:05 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/02/24 21:07:51 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_stack	*ft_lstlast(t_stack *head)
 
 	if (!head)
 		return (NULL);
+
+
 	tmp = head;
 	while (tmp->next != NULL)
 	{
@@ -54,30 +56,19 @@ t_stack	*ft_lstlast(t_stack *head)
 	return (tmp);
 }
 
-void	fill_stack(int *nbrs, t_stack **head, int size)
-{
-    int i;
-    t_stack *prev;
-	t_stack *a;
 
-    i = 0;
-    a = (*head);
-	prev = (*head); 
-    while (i < size)
-    {
-        if (i == 0)
-		{
-			a->x = nbrs[i];
-			a->prev = NULL ;
-		}
-        else
-        {
-            a->next = ft_lstnew(nbrs[i]);
-            a = a->next;
-			a->prev = prev;
-			prev = prev->next;
-        }
-        i++;
-    }
-	a->next = NULL;
+int	lst_size(t_stack **head)
+{
+	t_stack *node;
+	int		size;
+	if (!(*head))
+		return 0;
+	node = (*head);
+	size = 0;
+	while(node != NULL)
+	{
+		size++;
+		node = node->next;
+	}
+	return (size);
 }

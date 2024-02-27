@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:23:43 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/30 21:56:41 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/02/24 21:10:29 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
  */
 void	push(t_stack **src, t_stack **dest)
 {
-	t_stack *tmp;
 	if (!*src)
 	{
-		perror("no stack");
+		printf("no src stack\n");
 		return ;
 	}
 	if (!*dest)
@@ -30,16 +29,14 @@ void	push(t_stack **src, t_stack **dest)
 		(*src) = (*src)->next;
 		(*dest)->next = 0;
 		(*dest)->prev = 0;
+		return ;
 	}
-	else
-	{
-		tmp = (*src);
-		(*dest)->prev = tmp;
-		tmp->next = (*dest);
-		(*dest) = tmp;
-		(*src) = (*src)->next;
-		(*src)->prev = 0;
-	}
+	(*dest)->prev = (*src);
+	(*src)->prev = 0;
+	(*src) = (*src)->next;
+	(*dest)->prev->next = (*dest);
+	(*dest) = (*dest)->prev;
+
 }
 
 void	pb(t_stack **a, t_stack **b)
@@ -53,9 +50,4 @@ void	pa(t_stack **a, t_stack **b)
 	ft_printf("pa\n");
 	push(b, a);
 }
-// printf(stack b pos modify)
-/* 	while((*dest) != NULL)
-	{
-		printf("(*dest) = %d\n", (*dest)->x);
-		(*dest) = (*dest)->next;
-	} */
+
