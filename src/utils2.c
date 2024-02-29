@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:38:27 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/02/27 16:38:27 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/02/28 22:23:33 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,86 +40,96 @@ void	fill_stack(int *nbrs, t_stack **head, int size)
 	a->next = NULL;
 }
 
-void push_value(t_stack *a, t_stack *b)// vou dar a cada node o valor do push do mesmo,  
-{
-	int len_a;
-	int len_b;
-
-	len_a = lst_size(&a);
-	len_b = lst_size(&b);
-	while(b)
+void push_value(t_stack *dest, t_stack *src)
+{ 
+	int len_dest;// dest_list
+	int len_src;//src_list
+	// as duas alineias acima estao corretas se for the b -> a, caso contrario o dest e src trocam se
+	len_dest = lst_size(&dest);
+	len_src = lst_size(&src);
+	while(src)
 	{
-		b->push_value = b->index;
-		if (b->above_middle == 0)
-			b->push_value = len_b - b->index;
-		if (b->match->above_middle == 1)
-			b->push_value += b->match->index;
+		
+		src->push_value = src->index;
+		if (src->above_middle == 0)
+			src->push_value = len_src - src->index;
+		if (src->match->above_middle == 1)
+			src->push_value += src->match->index;
 		else
-			b->push_value += len_a - b->match->index;
-		b = b->next;
+			src->push_value += len_dest - src->match->index;
+		src = src->next;
 	}
 }
 
-t_stack	*cheappest_push(t_stack *b) // vou encontrar o primeiro node com o valor equivalente ao mais barato
+t_stack	*find_cheappest_push(t_stack *head) // vou encontrar o primeiro node com o valor equivalente ao mais barato
 {
 	int lowest;
-	t_stack *tmp_b;
-	t_stack *lowest_node;
+	t_stack *cheappest_node;
 
 	lowest = INT_MAX;
-	tmp_b = b;
-	while(tmp_b)
+	while(head)
 	{
-		if (lowest > tmp_b->push_value)
+		if (lowest > head->push_value)
 		{
-			lowest = tmp_b->push_value;
-			lowest_node = tmp_b;
+			lowest = head->push_value;
+			cheappest_node = head;
 		}
-		tmp_b = tmp_b->next;
+		head = head->next;
 	}
-	return (lowest_node);
+	return (cheappest_node);
 }
 
-void	r_till_top(t_stack **a, t_stack **b, t_stack *lowest_push)
-{
-	// t_stack *tmp_a;
-	// t_stack *tmp_b;
-
-	// tmp_a = (*a);
-	// tmp_b = (*b);
-	if (lowest_push->above_middle == 1 && lowest_push->match->above_middle == 1)
+static void	rotate_src_node(t_stack **src_node, t_stack *n2p, char stack_to_take)
+{	
+	if (n2p->above_middle == 1)
 	{
-		while((*b) != lowest_push && (*a) != lowest_push->match)
-			rr(a, b);	
+		while((*src_node) != n2p)
+		{
+			if (stack_to_take == 'a')
+				ra(src_node);
+			else if (stack_to_take == 'b')
+				rb(src_node);
+		}
 	}
-	else if(lowest_push->above_middle == 0 && lowest_push->match->above_middle == 0)
-	{
-		while((*b) != lowest_push && (*a) != lowest_push->match)
-			rrr(a, b);
-	}	
-	
-// este loop vai rodar ambos os nodes ate ter ou o node certo em a no topo ou o  node de b no topo
-// agra o que devo fazer e acertar com o que n esta no topo.																																																																													)		
-}
-
-void r_adjust(t_stack **a, t_stack **b, t_stack *n2p)
-{
-	if ((*a) != n2p->match)
-	{
-		if (n2p->match->above_middle == 1)
-			while((*a) != n2p->match)
-				ra(a);
-		else
-			while((*a) != n2p->match)
-				rra(a);
-	}	
-	else if ((*b) != n2p)
+	else if (n2p->above_middle == 0)
 	{	
-		if (n2p->match->above_middle == 1)
-			while((*b) != n2p)
-				rb(b);
-		else
-			while((*b) != n2p)
-				rrb(b);		
+		while((*src_node) != n2p)
+		{
+			if (stack_to_take == 'a')
+				rra(src_node);
+			else if (stack_to_take == 'b')
+				rrb(src_node);	
+		}
 	}
+}
+// stack to take  e ...give muda dependendo do loop(primerio ou segundo)
+static void	rotate_dest_node(t_stack **dest_node, t_stack *n2p, char stack_to_give) // stack_to_take  needs to be the stack that we are rotating
+{
+	if (n2p->match->above_middle == 1)
+	{
+		while((*dest_node) != n2p->match)
+		{
+			if (stack_to_give == 'a')
+				rb(dest_node);
+			else if (stack_to_give == 'b')
+				ra(dest_node);	
+		}
+	}
+	else if (n2p->match->above_middle == 0)
+	{
+		while((*dest_node) != n2p->match)
+		{
+			if (stack_to_give == 'a')
+				rrb(dest_node);
+			else if (stack_to_give == 'b')
+				rra(dest_node);
+		}
+	}
+}
+
+// a e dest b e src on the last loop, otherwise is the contrary
+void r_adjust(t_stack **dest_node, t_stack **src_node, t_stack *n2p, char stack_to_take)// char b
+{
+	rotate_src_node(src_node, n2p, stack_to_take);
+	rotate_dest_node(dest_node, n2p, stack_to_take);
 }

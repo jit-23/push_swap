@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:38:26 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/02/25 00:16:13 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/02/29 02:35:59 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,18 @@ void	quick_sort(t_stack **head)
 	// 	a = a->next;
 	// }
 }
-int sorted(t_stack **head)
+int sorted(t_stack *head)
 {
-	t_stack *tmp;
 	long nbr;
 
-	tmp = (*head);
 	nbr = -2147483649;
-	while(tmp != NULL)
-	{
-		if (nbr > tmp->x)
-			return 1;
-		else
-			nbr = tmp->x;
-		tmp = tmp->next;
-	}
-	printf("sorted\n");
-	exit(1);
-}
-t_stack *biggest_nbr(t_stack *head)
-{
-	t_stack *big;
-	big = (t_stack *)malloc(sizeof(t_stack));
-	big->x = INT_MIN;
-	// printf("big = %d\n", big->x);
 	while(head != NULL)
 	{
-		if (big->x < head->x)
-			big = head;
+		if (nbr > head->x)
+			return 1; // 1 if not sorted
+		else
+			nbr = head->x;
 		head = head->next;
 	}
-	return (big);
+	return (0);
 }

@@ -6,12 +6,26 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 18:59:41 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/02/24 14:36:52 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/02/29 02:36:41 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+
+static void push_swap(t_stack **a, t_stack **b, char **args, int argc)
+{
+	handle_args(argc, args, a);
+	if (argc == 2)
+	{	
+		if (!sorted(*a))
+			sa(a);
+	}
+	else if (argc == 3)
+		quick_sort(a);
+    else if (argc > 3)
+		turk(a, b);
+}
 int main(int argc, char  *argv[])
 {
 	t_stack *a;
@@ -19,45 +33,10 @@ int main(int argc, char  *argv[])
 
 	a = NULL;
 	b = NULL;
-    if (argc < 2)  // if no numbers
+	argc--;
+   	if (argc == 1)  // if no numbers
 		return (ft_printf("Error\n"),1);
-  		//  else if (argc == 2) // if numbers char
-		//  handle_string(argv[1], &a);
-	else if (argc == 3)
-	{
-		handle_args(argc - 1, &argv[1], &a);
-		sorted(&a);
-		sa(&a);
-	}
-    else if (argc > 3)
-    {
-		handle_args(argc - 1, &argv[1], &a);
-		if (argc == 4)
-			quick_sort(&a);
-		else
-		{
-			turk(&a, &b);
-		}
-	}
-	//printf("size --%d\n",  argc -1);
-	//printf("size --%d\n",  lst_size(&a));
-	//delete_lst((&a),);
+	else
+		push_swap(&a, &b, &argv[1], argc);
 	return 0;
 }
-
-
-
-
-
-
-	// while(b != NULL)
-	// {
-	// 	printf("b - %d\n", b->x);
-	// 	b = b->next;
-	// }
-	// printf("--------\n");
-	// while(a != NULL)
-	// {
-	// 	printf("a - %d\n", a->x);
-	// 	a = a->next;
-	// }
