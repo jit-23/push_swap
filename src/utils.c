@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 01:42:11 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/02/24 21:07:51 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:44:53 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ t_stack	*ft_lstlast(t_stack *head)
 
 int	lst_size(t_stack **head)
 {
-	t_stack *node;
-	int size;
+	t_stack	*node;
+	int		size;
+
 	if (!(*head))
 		return (0);
 	node = (*head);

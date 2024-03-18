@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:19:20 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/01/25 03:38:09 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/18 23:35:09 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ long long int	ft_atoll(char *nbr)
 	if (nbr[i] == '-')
 	{
 		i++;
-		printf("error");
+		ft_printf("error");
 		exit(1);
 	}
 	while (nbr[i])

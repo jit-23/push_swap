@@ -6,23 +6,12 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 03:23:30 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/02/29 01:55:23 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/18 23:52:32 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
-typedef struct s_stack
-{
-    int				x;
-	int				index;
-	int				push_value;
-	int				above_middle;
-	struct s_stack	*match;
-    struct s_stack	*next;
-    struct s_stack	*prev;
-}t_stack;
 
 # include <stdio.h>
 # include <limits.h>
@@ -33,32 +22,44 @@ typedef struct s_stack
 # include <string.h>
 # include <fcntl.h>
 
-//int  split_stacks(t_stack *stack, char *numbers);
+typedef struct s_stack
+{
+	int				x;
+	int				index;
+	int				push_value;
+	int				above_middle;
+	struct s_stack	*match;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+}t_stack;
+
 t_stack	*ft_lstnew(int x);
-void	fill_stack(int *nbrs, t_stack **head, int size);
-int	limit_value(int *nbrs, int size);
-int *convert_arr(char **nbrs, int size);
-void    handle_string(char *string, t_stack **a);
-int repete_nbrs(int *nbr, int size);
-
-//void	delete_nbrs(int *nbrs, int size);
-void handle_args(int argc,char **argv, t_stack **a);
-void delete_lst(t_stack **del, int size);
 t_stack	*ft_lstlast(t_stack *head);
+int		lst_size(t_stack **head);
 
-t_stack *biggest_nbr(t_stack *head);
-t_stack *smallest_nbr(t_stack *head); 
-void 	quick_sort(t_stack **head);
-int	lst_size(t_stack **head);
-int sorted(t_stack *head);
-void turk(t_stack **a, t_stack **b);//, int args);
+void	fill_stack(int *nbrs, t_stack **head, int size);
+
+int		limit_value(long *nbrs, int size);
+int		repete_nbrs(long *nbr, int size);
+
+void	handle_args(int argc, char **argv, t_stack **a);
+void	delete_lst(t_stack **del, int size);
+
+void	quick_sort(t_stack **head);
+int		sorted(t_stack *head);
+t_stack	*biggest_nbr(t_stack *head);
+t_stack	*smallest_nbr(t_stack *head);
+t_stack	*find_cheappest_push(t_stack *b);
+void	turk(t_stack **a, t_stack **b);
 void	big_match(t_stack **a, t_stack **b);
 void	small_match(t_stack **a, t_stack **b);
-void push_value(t_stack *a, t_stack *b);// vou dar a cada node o valor do push do mesmo,  
-t_stack	*find_cheappest_push(t_stack *b); // vou encontrar o primeiro node com o valor equivalente ao mais barato
+
+void	push_value(t_stack *a, t_stack *b);
 void	r_till_top(t_stack **a, t_stack **b, t_stack *lowest_push);
-void r_adjust(t_stack **a, t_stack **b, t_stack *lowest_push, char node_to_take);
+void	r_adjust(t_stack **a, t_stack **b,
+			t_stack *lowest_push, char node_to_take);
 void	init_nodes(t_stack **a, t_stack **b, char node2take);
+void	put_index(t_stack *head, int middle);
 void	move_a2b(t_stack **a, t_stack **b);
 void	move_b2a(t_stack **a, t_stack **b);
 
@@ -72,13 +73,18 @@ void	ra(t_stack **head);
 void	rb(t_stack **head);
 void	rr(t_stack **a, t_stack **b);
 
-void 	reverse_rotate(t_stack **head);
-void 	rra(t_stack **head);
-void 	rrb(t_stack **head);
-void 	rrr(t_stack **a, t_stack **b);
+void	reverse_rotate(t_stack **head);
+void	rra(t_stack **head);
+void	rrb(t_stack **head);
+void	rrr(t_stack **a, t_stack **b);
 
 void	push(t_stack **dest, t_stack **src);
 void	pa(t_stack **dest, t_stack **src);
 void	pb(t_stack **dest, t_stack **src);
+
+void	rotate_dest_node(t_stack **dest_node, t_stack *n2p,
+			char stack_to_give);
+void	rotate_src_node(t_stack **src_node, t_stack *n2p,
+			char stack_to_take);
 
 #endif

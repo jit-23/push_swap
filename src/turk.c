@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:24:32 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/01 11:41:21 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:52:55 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,15 @@ void	turk(t_stack **a, t_stack **b)
 	}
 	quick_sort(a);
 	big_nbr = biggest_nbr(*b);
-	printf("S - %d\n", big_nbr->x);
 	adjust_tail(a, b, 'b', big_nbr);
-	// while(*b)
-	// {
-	// 	printf("a - %d\n",(*b)->x);
-	// 	(*b) = (*b)->next;
-	// }
 	while ((*b))
 	{
 		init_nodes(a, b, 'b');
 		move_b2a(a, b);
 	}
+	put_index(*a, lst_size(a) / 2);
 	small_nbr = smallest_nbr(*a);
 	adjust_tail(a, b, 's', small_nbr);
-	while (*a)
-	{
-		printf("a - %d\n", (*a)->x);
-		(*a) = (*a)->next;
-	}
 }
 
 t_stack	*smallest_nbr(t_stack *head)
@@ -100,7 +90,6 @@ t_stack	*biggest_nbr(t_stack *head)
 	int		big;
 
 	big = INT_MIN;
-	// printf("big = %d\n", big->x);
 	while (head != NULL)
 	{
 		if (big < head->x)
