@@ -24,14 +24,14 @@ t_stack	*ft_lstnew(int x)
 	return (new_node);
 }
 
-void delete_lst(t_stack **head, int size)
+void	delete_lst(t_stack **head, int size)
 {
-	t_stack *del;
-	int i;
+	t_stack	*del;
+	int		i;
 
 	i = -1;
 	del = (*head);
-	while(++i < size)
+	while (++i < size)
 	{
 		del = del->next;
 		free(*head);
@@ -39,15 +39,12 @@ void delete_lst(t_stack **head, int size)
 	}
 }
 
-
 t_stack	*ft_lstlast(t_stack *head)
 {
 	t_stack	*tmp;
 
 	if (!head)
 		return (NULL);
-
-
 	tmp = head;
 	while (tmp->next != NULL)
 	{
@@ -56,16 +53,15 @@ t_stack	*ft_lstlast(t_stack *head)
 	return (tmp);
 }
 
-
 int	lst_size(t_stack **head)
 {
 	t_stack *node;
-	int		size;
+	int size;
 	if (!(*head))
-		return 0;
+		return (0);
 	node = (*head);
 	size = 0;
-	while(node != NULL)
+	while (node != NULL)
 	{
 		size++;
 		node = node->next;

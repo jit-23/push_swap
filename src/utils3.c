@@ -12,39 +12,40 @@
 
 #include "../push_swap.h"
 
-static void put_index(t_stack *head, int middle)
+static void	put_index(t_stack *head, int middle)
 {
-	int i;
+	int	i;
 
 	i = 0;
-		while(head)
-		{
-			head->index = i++;
-			if (head->index <= middle)// higher than middle
-				head->above_middle = 1; // 1 true
-			else
-				head->above_middle = 0; // 0 false
-			head = head->next;
-		}
+	while (head)
+	{
+		head->index = i++;
+		if (head->index <= middle)  // higher than middle
+			head->above_middle = 1; // 1 true
+		else
+			head->above_middle = 0; // 0 false
+		head = head->next;
 	}
-	
-	void	init_nodes(t_stack **a, t_stack **b, char node2take)
+}
+
+void	init_nodes(t_stack **a, t_stack **b, char node2take)
 {
-	put_index((*a), lst_size(a)/2);
-	put_index((*b), lst_size(b)/2);
+	put_index((*a), lst_size(a) / 2);
+	put_index((*b), lst_size(b) / 2);
 	if (node2take == 'a')
-		small_match(a,b);
+		small_match(a, b);
 	else
 		big_match(a, b);
 }
 
-void	big_match(t_stack **a, t_stack **b) // looks for the bigger most close number in the other stack 
+void	big_match(t_stack **a, t_stack **b)
+		// looks for the bigger most close number in the other stack
 {
 	long val;
 	t_stack *tmp_a;
 	t_stack *tmp_b;
 	tmp_b = (*b);
-	while(tmp_b)
+	while (tmp_b)
 	{
 		tmp_a = (*a);
 		val = INT_MAX;
@@ -57,24 +58,26 @@ void	big_match(t_stack **a, t_stack **b) // looks for the bigger most close numb
 			}
 			tmp_a = tmp_a->next;
 		}
-		if (val == INT_MAX) // only happens if there is no bigger number in stack a, so 
-			tmp_b->match = smallest_nbr(*a);// we asign the smallest to it
+		if (val == INT_MAX)                 
+			// only happens if there is no bigger number in stack a, so
+			tmp_b->match = smallest_nbr(*a); // we asign the smallest to it
 		tmp_b = tmp_b->next;
 	}
 }
 
-void	small_match(t_stack **a, t_stack **b) // looks for the bigger most close number in the other stack 
+void	small_match(t_stack **a, t_stack **b)
+		// looks for the bigger most close number in the other stack
 {
 	int val;
 	t_stack *tmp_b;
 	t_stack *tmp_a;
 
 	tmp_a = (*a);
-	while(tmp_a)
+	while (tmp_a)
 	{
 		val = INT_MIN;
 		tmp_b = (*b);
-		while(tmp_b)
+		while (tmp_b)
 		{
 			if (tmp_a->x > tmp_b->x && tmp_b->x > val)
 			{

@@ -12,61 +12,60 @@
 
 #include "../push_swap.h"
 
-int repete_nbrs(int *nbr, int size)
+int	repete_nbrs(int *nbr, int size)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	while(i < size - 1)
+	while (i < size - 1)
 	{
 		j = i;
-		while(j + 1 < size)
+		while (j + 1 < size)
 		{
 			if (nbr[i] == nbr[j + 1])
-				return 1;
+				return (1);
 			j++;
 		}
 		i++;
 	}
-    return 0;
+	return (0);
 }
 
 int	limit_value(int *nbrs, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
 		if (nbrs[i] > INT_MAX || nbrs[i] < INT_MIN)
 			return (1);
 		i++;
 	}
-	return (0);		
+	return (0);
 }
 
-int *convert_arr(char **nbrs, int size)
+int	*convert_arr(char **nbrs, int size)
 {
-	int i;
-	int *arr;
+	int	i;
+	int	*arr;
 
 	i = -1;
-	
 	arr = (int *)malloc(sizeof(int) * size);
 	if (!arr)
-		exit (EXIT_FAILURE);
-	while(nbrs[++i])
+		exit(EXIT_FAILURE);
+	while (nbrs[++i])
 		arr[i] = ft_atoll(nbrs[i]);
 	return (arr);
 }
 
-void    handle_string(char *string, t_stack **a)
+void	handle_string(char *string, t_stack **a)
 {
 	char	**arr;
 	int		size;
-	int *nbrs;
+	int		*nbrs;
 
 	*a = (t_stack *)malloc(sizeof(t_stack));
 	size = ft_count(string, ' ');
@@ -75,28 +74,27 @@ void    handle_string(char *string, t_stack **a)
 		printf("error less than 2 args\n");
 		exit(EXIT_FAILURE);
 	}
-    arr = ft_split(string, ' ');
+	arr = ft_split(string, ' ');
 	nbrs = convert_arr(arr, size);
-    if (!nbrs)
+	if (!nbrs)
 	{
-        printf("ERROR converting\n");
+		printf("ERROR converting\n");
 		return ;
 	}
-    if (repete_nbrs(nbrs, size) == 1)
+	if (repete_nbrs(nbrs, size) == 1)
 	{
-        printf("repeated nbrs\n");
+		printf("repeated nbrs\n");
 		return ;
-	} 
+	}
 	if (limit_value(nbrs, size) == 1)
 	{
 		printf("more/less that  int \n");
 		return ;
 	}
 	fill_stack(nbrs, a, size);
-	delete_lst(a,size);
+	delete_lst(a, size);
 	for (int s = 0; arr[s]; s++)
 		free(arr[s]);
 	free(arr);
 	free(nbrs);
 }
-

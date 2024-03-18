@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fde-jesu <fde-jesu@student.42porto.com>    +#+  +:+       +#+         #
+#    By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 21:29:48 by fde-jesu          #+#    #+#              #
-#    Updated: 2024/01/25 01:32:57 by fde-jesu         ###   ########.fr        #
+#    Updated: 2024/03/02 19:54:54 by fde-jesu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ all: $(NAME)
 
 $(NAME):
 	      cc -g ${CFLAGS} -c -I. ${HEADER} ${FUN}
-		ar rcs ${NAME} ${OBJ}
+		 ar rcs ${NAME} ${OBJ}
 clean:
 	rm -f $(OBJ) 
 

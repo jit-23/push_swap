@@ -6,41 +6,48 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 03:40:23 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/02/24 14:36:19 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:48:05 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void handle_args(int size, char **argv, t_stack **a)
+static void	init_head(t_stack *head)
 {
-    int *nbrs;
-    int i;
+	head->above_middle = 0;
+	head->index = 0;
+	head->match = 0;
+	head->next = 0;
+	head->prev = 0;
+	head->push_value = 0;
+	head->x = 0;
+}
 
+void	handle_args(int size, char **argv, t_stack **a)
+{
+	int	*nbrs;
+	int	i;
+
+	i = -1;
 	*a = (t_stack *)malloc(sizeof(t_stack));
-    i = -1;
-    nbrs = (int *)malloc(sizeof(int) * (size));
+	init_head((*a));
+	nbrs = (int *)malloc(sizeof(int) * (size));
 	if (!nbrs)
 	{
 		free(nbrs);
-		return ;
+		exit(1);
 	}
-    while(++i < size)
+	while (++i < size)
 	{
-        nbrs[i] = ft_atoll((argv[i]));
-
+		nbrs[i] = ft_atoll((argv[i]));
 	}
-	if (repete_nbrs(nbrs, size) == 1)
+	if (repete_nbrs(nbrs, size) == 1 || limit_value(nbrs, size) == 1)
 	{
-        printf("repeated nbrs\n");
-		return ;
-	} 
-	if (limit_value(nbrs, size) == 1)
-	{
-		printf("more/less that  int \n");
-		return ;
+		printf("Error\n");
+		free(nbrs);
+		delete_lst(a, lst_size(a));
+		exit(1);
 	}
-	i = 0;
 	fill_stack(nbrs, a, size);
 	free(nbrs);
 }
