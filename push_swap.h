@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 03:23:30 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/18 23:52:32 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:01:43 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,19 @@ t_stack	*ft_lstnew(int x);
 t_stack	*ft_lstlast(t_stack *head);
 int		lst_size(t_stack **head);
 
-void	fill_stack(int *nbrs, t_stack **head, int size);
+void	fill_stack(long *nbrs, t_stack **head, int size);
 
 int		limit_value(long *nbrs, int size);
+int		not_int(char **argv);
 int		repete_nbrs(long *nbr, int size);
 
 void	handle_args(int argc, char **argv, t_stack **a);
-void	delete_lst(t_stack **del, int size);
+void	handle_string(char *string, t_stack **a);
 
+void	delete_lst(t_stack **del, int size);
+void	delete_arr(char **arr);
+
+void	init_head(t_stack *head);
 void	quick_sort(t_stack **head);
 int		sorted(t_stack *head);
 t_stack	*biggest_nbr(t_stack *head);
@@ -53,6 +58,10 @@ t_stack	*find_cheappest_push(t_stack *b);
 void	turk(t_stack **a, t_stack **b);
 void	big_match(t_stack **a, t_stack **b);
 void	small_match(t_stack **a, t_stack **b);
+
+void	push_swap_string(t_stack **a, t_stack **b, int size);
+void	push_swap_args(t_stack **a, t_stack **b, int argc);
+void	push_swap(t_stack **a, t_stack **b, char **args, int argc);
 
 void	push_value(t_stack *a, t_stack *b);
 void	r_till_top(t_stack **a, t_stack **b, t_stack *lowest_push);

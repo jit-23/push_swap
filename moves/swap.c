@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 04:31:50 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/18 19:25:09 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:09:33 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	swap(t_stack **head)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	*m;
+	t_stack	*n;
 
-	a = (*head);
-	b = a->next;
-	a->prev = b;
-	a->next = b->next;
-	b->prev = 0;
-	b->next->prev = a;
-	b->next = a;
-	(*head) = b;
+	m = (*head);
+	n = m->next;
+	m->prev = n;
+	n->next = m;
+	n->prev = 0;
+	m->next = 0;
+	(*head) = n; 
 }
+
 
 void	sa(t_stack **head)
 {

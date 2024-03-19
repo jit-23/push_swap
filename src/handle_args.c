@@ -6,13 +6,13 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 03:40:23 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/18 23:44:32 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:07:22 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	init_head(t_stack *head)
+void	init_head(t_stack *head)
 {
 	head->above_middle = 0;
 	head->index = 0;
@@ -44,16 +44,35 @@ int	repete_nbrs(long *nbr, int size)
 	return (0);
 }
 
-int	limit_value(long *nbrs, int size)
+int	limit_value(long *nbr, int size)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		if (nbrs[i] > 2147483647 || nbrs[i] < -2147483648)
+		if (nbr[i] > 2147483647 || nbr[i] < -2147483648)
 			return (1);
 		i++;
+	}
+	return (0);
+}
+
+int	not_int(char **argv)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while(argv[++i])
+	{
+		j = 0;
+		while(argv[i][j])
+		{
+			if (ft_isdigit(argv[i][j]) == 0)
+				return (1);
+			j++;
+		}
 	}
 	return (0);
 }
@@ -64,18 +83,18 @@ void	handle_args(int size, char **argv, t_stack **a)
 	int		i;
 
 	i = -1;
+	if (not_int(argv) == 1)
+	{
+		printf("error\n");
+		exit(1);
+	}
 	*a = (t_stack *)malloc(sizeof(t_stack));
 	init_head((*a));
 	nbrs = (long *)malloc(sizeof(long) * (size));
 	if (!nbrs)
-	{
-		free(nbrs);
 		exit(1);
-	}
 	while (++i < size)
-	{
 		nbrs[i] = ft_atoll((argv[i]));
-	}
 	if (repete_nbrs(nbrs, size) == 1 || limit_value(nbrs, size) == 1)
 	{
 		printf("Error\n");
@@ -83,6 +102,6 @@ void	handle_args(int size, char **argv, t_stack **a)
 		delete_lst(a, lst_size(a));
 		exit(1);
 	}
-	fill_stack((int *)nbrs, a, size);
+	fill_stack(nbrs, a, size);
 	free(nbrs);
 }

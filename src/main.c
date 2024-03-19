@@ -6,31 +6,13 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 18:59:41 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/18 23:22:35 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:08:43 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	push_swap(t_stack **a, t_stack **b, char **args, int argc)
-{
-	handle_args(argc, args, a);
-	if (argc == 2)
-	{
-		if (!sorted(*a))
-			sa(a);
-	}
-	else if (argc == 3)
-	{
-		quick_sort(a);
-		delete_lst(a, lst_size(a));
-		exit(1);
-	}
-	else if (argc > 3)
-		turk(a, b);
-}
-
-void	fill_stack(int *nbrs, t_stack **head, int size)
+void	fill_stack(long *nbrs, t_stack **head, int size)
 {
 	int		i;
 	t_stack	*prev;
@@ -65,11 +47,30 @@ int	main(int argc, char *argv[])
 
 	a = NULL;
 	b = NULL;
-	argc--;
 	if (argc == 1)
-		return (ft_printf("Error\n"), 1);
+		return (ft_printf("error\n"), 1);
 	else
-		push_swap(&a, &b, &argv[1], argc);
+		push_swap(&a, &b, &argv[1], --argc);
 	delete_lst(&a, lst_size(&a));
 	return (0);
 }
+
+
+/* static void	push_swap(t_stack **a, t_stack **b, char **args, int argc)
+{
+	handle_string(args[0], a);
+//	handle_args(argc, args, a);
+	if (argc == 2)
+	{
+		if (!sorted(*a))
+			sa(a);
+	}
+	else if (argc == 3)
+	{
+		quick_sort(a);
+		delete_lst(a, lst_size(a));
+		exit(1);
+	}
+	else if (argc > 3)
+		turk(a, b);
+} */
