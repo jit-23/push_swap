@@ -6,13 +6,13 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:02:08 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/19 17:01:32 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/19 22:51:38 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void push_swap_args(t_stack **a, t_stack **b, int argc)
+void	push_swap_args(t_stack **a, t_stack **b, int argc)
 {
 	if (argc == 2)
 	{
@@ -22,12 +22,18 @@ void push_swap_args(t_stack **a, t_stack **b, int argc)
 		exit (1);
 	}
 	else if (argc == 3)
-		quick_sort(a);
+	{
+		if (sorted(*a))
+			quick_sort(a);
+	}
 	else if (argc > 3)
-		turk(a, b);
+	{
+		if (sorted(*a))
+			turk(a, b);
+	}
 }
 
-void push_swap_string(t_stack **a, t_stack **b, int size)
+void	push_swap_string(t_stack **a, t_stack **b, int size)
 {
 	if (size == 2)
 	{
@@ -45,11 +51,11 @@ void	push_swap(t_stack **a, t_stack **b, char **args, int argc)
 	if (ft_strchr(args[0], ' '))
 	{
 		handle_string(args[0], a);
-		push_swap_string(a, b,lst_size(a));
+		push_swap_string(a, b, lst_size(a));
 	}
 	else
 	{
 		handle_args(argc, args, a);
-		push_swap_args(a,b,argc);
+		push_swap_args(a, b, argc);
 	}
 }

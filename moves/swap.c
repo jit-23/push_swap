@@ -6,13 +6,13 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 04:31:50 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/19 21:09:33 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/19 22:39:07 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	swap(t_stack **head)
+/* void	swap(t_stack **head)
 {
 	t_stack	*m;
 	t_stack	*n;
@@ -23,9 +23,22 @@ void	swap(t_stack **head)
 	n->next = m;
 	n->prev = 0;
 	m->next = 0;
-	(*head) = n; 
-}
+	(*head) = n;
+} */
+void	swap(t_stack **head)
+{
+	t_stack	*a;
+	t_stack	*b;
 
+	a = (*head);
+	b = a->next;
+	a->prev = b;
+	a->next = b->next;
+	b->prev = 0;
+	b->next->prev = a;
+	b->next = a;
+	(*head) = b;
+}
 
 void	sa(t_stack **head)
 {

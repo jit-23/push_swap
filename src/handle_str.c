@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:17:01 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/19 17:02:53 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/19 22:49:35 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	delete_arr(char **arr)
 {
-	int s;
+	int	s;
 
 	s = -1;
-	while(arr[++s])
+	while (arr[++s])
 		free(arr[s]);
 	free(arr);
 }
@@ -53,7 +53,7 @@ void	handle_string(char *string, t_stack **a)
 	*a = (t_stack *)malloc(sizeof(t_stack));
 	init_head((*a));
 	nbrs = (long *)malloc(sizeof(long) * (size));
-	while(++i < size)
+	while (++i < size)
 	{
 		nbrs[i] = ft_atoll(arr[i]);
 	}

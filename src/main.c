@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 18:59:41 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/19 21:08:43 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/19 22:48:34 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,3 @@ int	main(int argc, char *argv[])
 	delete_lst(&a, lst_size(&a));
 	return (0);
 }
-
-
-/* static void	push_swap(t_stack **a, t_stack **b, char **args, int argc)
-{
-	handle_string(args[0], a);
-//	handle_args(argc, args, a);
-	if (argc == 2)
-	{
-		if (!sorted(*a))
-			sa(a);
-	}
-	else if (argc == 3)
-	{
-		quick_sort(a);
-		delete_lst(a, lst_size(a));
-		exit(1);
-	}
-	else if (argc > 3)
-		turk(a, b);
-} */

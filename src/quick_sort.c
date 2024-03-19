@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:38:26 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/19 17:00:13 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/19 22:48:16 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	quick_sort(t_stack **head)
 		rra(head);
 	if ((*head)->x > (*head)->next->x)
 		sa(head);
-	
 }
 
 int	sorted(t_stack *head)
