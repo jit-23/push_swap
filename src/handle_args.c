@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 03:40:23 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/19 22:52:07 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/20 20:06:19 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,26 @@ int	limit_value(long *nbr, int size)
 	}
 	return (0);
 }
+
+/* int not_int(char ** argv)
+{
+	int i;
+	int j;
+	i = -1;
+	while(argv[++i])
+	{
+		j = 0;
+		while(argv[i][j])
+		{
+			if (j == 0 && argv[i][j] == '-')
+				continue ;
+			else if (ft_isdigit(argv[i][j] == 0))
+				return (1);
+			j++;
+		}
+	}
+	return (0);
+} */
 
 int	not_int(char **argv)
 {

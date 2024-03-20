@@ -6,11 +6,11 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 00:07:54 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/20 02:02:30 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:36:36 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "checker.h"
 
 void	read_line(t_stack **a, t_stack **b)
 {
@@ -20,43 +20,57 @@ void	read_line(t_stack **a, t_stack **b)
 	while(line)
 	{
 		line = get_next_line(0);
-		check_move(line,a,b);
+		//printf("line = %s\n", line);
+		if (line)
+		{
+			check_move(a,b, line);
+			free(line);
+		}
 	}
-	if (sorted(*a))
+	t_stack *q;
+	
+	q = (*a);
+	while(q)
+	{
+		printf("%d\n", q->x);
+		q = q->next;		
+	}
+	if (!sorted(*a))
 	{
 		printf("OK");
 	}
 }
 void	check_move(t_stack **a, t_stack **b, char *cmd)
 {
-	if (ft_strncmp(line, "sa\n", sizeof("sa\n")))
+	if (!(ft_strncmp(cmd, "sa", 2)))
 		sa(a);
-	else if (ft_strncmp(line, "sb\n", sizeof("sb\n")))
+	else if (!(ft_strncmp(cmd, "sb\n", sizeof("sb\n"))))
 		sb(b);
-	else if (ft_strncmp(line, "ra\n", sizeof("ra\n")))
+	else if (!(ft_strncmp(cmd, "ra",2)))
 		ra(a);
-	else if (ft_strncmp(line, "rb\n", sizeof("rb\n")))
+	else if (!(ft_strncmp(cmd, "rb\n", sizeof("rb\n"))))
 		rb(b);
-	else if (ft_strncmp(line, "rr\n", sizeof("rr\n")))
+	else if (!(ft_strncmp(cmd, "rr\n", sizeof("rr\n"))))
 		rr(a,b);
-	else if (ft_strncmp(line, "rra\n", sizeof("rra\n")))
+	else if (!(ft_strncmp(cmd, "rra\n", sizeof("rra\n"))))
 		rra(a);
-	else if (ft_strncmp(line, "rrb\n", sizeof("rrb\n")))
+	else if (!(ft_strncmp(cmd, "rrb\n", sizeof("rrb\n"))))
 		rrb(b);
-	else if (ft_strncmp(line, "rrr\n", sizeof("rrr\n")))
+	else if (!(ft_strncmp(cmd, "rrr\n", sizeof("rrr\n"))))
 		rrr(a,b);
-	else if (ft_strncmp(line, "pa\n", sizeof("pa\n")))
+	else if (!(ft_strncmp(cmd, "pa\n", sizeof("pa\n"))))
 		pa(a,b);
-	else if (ft_strncmp(line, "pb\n", sizeof("pb\n")))
+	else if (!(ft_strncmp(cmd, "pb\n", sizeof("pb\n"))))
 		pb(a,b);
 	else
 	{
-		printf("Error\n")
+		printf("Errror\n");
 		exit(1);
 	}
 }
 
-static void	push_swap_bonus(t_stack **a, t_stack **b, char **args, int argc)
+
+void	push_swap_bonus(t_stack **a, char **args, int argc)
 {
 	if (ft_strchr(args[0], ' '))
 		handle_string(args[0], a);
@@ -65,19 +79,19 @@ static void	push_swap_bonus(t_stack **a, t_stack **b, char **args, int argc)
 	
 }
 
-int main(int argc, char *argv)
+int main(int argc, char **argv)
 {
 	t_stack *a;
 	t_stack *b;
 
 	a = NULL;
 	b = NULL;
-	argc--;
 	if (argc == 1)
-		return (ft_printf("Error\n"),1);
-	else if (argc == 2)
+		return (0);
+	else
 	{
-		push_swap_bonus(&a,&b, &argv[1], argc);
+		push_swap_bonus(&a, &argv[1], --argc);
 		read_line(&a,&b);
+		delete_lst(&a, lst_size(&a));
 	}
 }

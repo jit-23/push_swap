@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 16:38:26 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/20 19:38:44 by fde-jesu         ###   ########.fr       */
+/*   Created: 2024/01/15 18:59:41 by fde-jesu          #+#    #+#             */
+/*   Updated: 2024/03/20 17:30:23 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	quick_sort(t_stack **head)
+void	fill_stack(long *nbrs, t_stack **head, int size)
 {
-	t_stack	*big;
+	int		i;
+	t_stack	*prev;
+	t_stack	*a;
 
-	big = biggest_nbr(*head);
-	if ((*head)->x == big->x)
-		ra(head);
-	else if ((*head)->next->x == big->x)
-		rra(head);
-	if ((*head)->x > (*head)->next->x)
-		sa(head);
-}
-
-int	sorted(t_stack *head)
-{
-	long	nbr;
-
-	nbr = -2147483649;
-	while (head != NULL)
+	i = 0;
+	a = (*head);
+	prev = (*head);
+	while (i < size)
 	{
-		if (nbr > head->x)
-			return (0);
+		if (i == 0)
+		{
+			a->x = nbrs[i];
+			a->prev = NULL;
+		}
 		else
-			nbr = head->x;
-		head = head->next;
+		{
+			a->next = ft_lstnew(nbrs[i]);
+			a = a->next;
+			a->prev = prev;
+			prev = prev->next;
+		}
+		i++;
 	}
-	return (1);
+	a->next = NULL;
 }
+	

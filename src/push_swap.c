@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:02:08 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/19 22:51:38 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/20 20:11:21 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,29 @@
 
 void	push_swap_args(t_stack **a, t_stack **b, int argc)
 {
-	if (argc == 2)
+	if (!sorted(*a))
 	{
-		if (sorted(*a))
+		if (argc == 2)
 			sa(a);
-		delete_lst(a, lst_size(a));
-		exit (1);
-	}
-	else if (argc == 3)
-	{
-		if (sorted(*a))
-			quick_sort(a);
-	}
-	else if (argc > 3)
-	{
-		if (sorted(*a))
+		else if (argc == 3)
+			quick_sort(a);	
+		else if (argc > 3)
 			turk(a, b);
 	}
 }
 
 void	push_swap_string(t_stack **a, t_stack **b, int size)
 {
-	if (size == 2)
+	if (!sorted(*a))
 	{
-		if (sorted(*a))
+		if (size == 2)
 			sa(a);
+		else if (size == 3)
+			quick_sort(a);
+		else if (size > 3)
+			turk(a, b);
 	}
-	else if (size == 3)
-		quick_sort(a);
-	else if (size > 3)
-		turk(a, b);
 }
-
 void	push_swap(t_stack **a, t_stack **b, char **args, int argc)
 {
 	if (ft_strchr(args[0], ' '))
