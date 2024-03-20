@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:23:43 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/02/24 21:10:29 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:57:47 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
  */
 void	push(t_stack **src, t_stack **dest)
 {
-	if (!*src)
-	{
-		printf("no src stack\n");
-		return ;
-	}
 	if (!*dest)
 	{
 		(*dest) = (*src);
