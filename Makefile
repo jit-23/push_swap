@@ -22,14 +22,12 @@ all: ${NAME}
 
 ${NAME} : ${OBJ}
 			${MAKE_LIBFT}
-			cc ${CFLAGS} -I. ${OBJ}  ${LIBFT} -o ${NAME}
+			cc ${CFLAGS} -I. ${FUN}  ${LIBFT} -o ${NAME}
 
-#${CHECKER} : ${OBJ_BONUS}
-#			cc ${OBJ_BONUS} ${LIBFT} -o ${CHECKER}
 bonus : ${CHECKER}
 
 ${CHECKER}: ${OBJ_BONUS} 
-	cc ${CFLAGS}  ${OBJ_BONUS} ${LIBFT} -o ${CHECKER}
+	cc ${CFLAGS}  ${CHECKER_FUN} ${LIBFT} -o ${CHECKER}
 
 clean:
 	rm -f ${OBJ}

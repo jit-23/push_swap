@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 03:23:30 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/21 03:23:08 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:04:10 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_index
 {
 	int	i;
 	int	j;
-}t_index;
+}	t_index;
 
 typedef struct s_stack
 {
@@ -37,7 +37,7 @@ typedef struct s_stack
 	struct s_stack	*match;
 	struct s_stack	*next;
 	struct s_stack	*prev;
-}t_stack;
+}	t_stack;
 
 t_stack	*ft_lstnew(int x);
 t_stack	*ft_lstlast(t_stack *head);
