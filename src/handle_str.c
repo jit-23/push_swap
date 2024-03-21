@@ -6,11 +6,22 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:17:01 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/19 22:49:35 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:24:42 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+void	init_head(t_stack *head)
+{
+	head->above_middle = 0;
+	head->index = 0;
+	head->match = 0;
+	head->next = 0;
+	head->prev = 0;
+	head->push_value = 0;
+	head->x = 0;
+}
 
 void	delete_arr(char **arr)
 {
@@ -46,7 +57,7 @@ void	handle_string(char *string, t_stack **a)
 	size = ft_count(string, ' ');
 	if (not_int(arr) == 1)
 	{
-		printf("error\n");
+		ft_printf("Error\n");
 		delete_arr(arr);
 		exit(1);
 	}

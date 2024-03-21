@@ -13,7 +13,7 @@ MAIN:= src/main.c
 
 FUN = ${MAIN} ${UTILS}
 #CHECKER_BONUS:= $(wildcard bonus/src/*.c)
-CHECKER_FUN:=  ${UTILS} bonus/checker.c
+CHECKER_FUN:=  ${UTILS} bonus/checker.c bonus/checker_utils.c
 
 OBJ_BONUS:= ${patsubst %.c, %.o, ${CHECKER_FUN}}
 OBJ:= ${patsubst %.c, %.o, ${FUN}}

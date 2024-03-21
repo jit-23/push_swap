@@ -6,22 +6,11 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 03:40:23 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/20 20:06:19 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:24:19 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-void	init_head(t_stack *head)
-{
-	head->above_middle = 0;
-	head->index = 0;
-	head->match = 0;
-	head->next = 0;
-	head->prev = 0;
-	head->push_value = 0;
-	head->x = 0;
-}
 
 int	repete_nbrs(long *nbr, int size)
 {
@@ -58,7 +47,7 @@ int	limit_value(long *nbr, int size)
 	return (0);
 }
 
-/* int not_int(char ** argv)
+int not_int(char ** argv)
 {
 	int i;
 	int j;
@@ -68,31 +57,18 @@ int	limit_value(long *nbr, int size)
 		j = 0;
 		while(argv[i][j])
 		{
-			if (j == 0 && argv[i][j] == '-')
-				continue ;
-			else if (ft_isdigit(argv[i][j] == 0))
-				return (1);
-			j++;
+			if (j == 0)
+				if (ft_isdigit(argv[i][j]) == 1 || argv[i][j] == '-') // if number or '-'
+					j++;
+				else
+					return (1);
+			else
+				if (ft_isdigit(argv[i][j]) == 1)
+					j++;
+				else
+					return (1); 
 		}
-	}
-	return (0);
-} */
 
-int	not_int(char **argv)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (argv[++i])
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (ft_isdigit(argv[i][j]) == 0)
-				return (1);
-			j++;
-		}
 	}
 	return (0);
 }
@@ -105,7 +81,7 @@ void	handle_args(int size, char **argv, t_stack **a)
 	i = -1;
 	if (not_int(argv) == 1)
 	{
-		printf("error\n");
+		ft_printf("Error\n");
 		exit(1);
 	}
 	*a = (t_stack *)malloc(sizeof(t_stack));
@@ -117,7 +93,7 @@ void	handle_args(int size, char **argv, t_stack **a)
 		nbrs[i] = ft_atoll((argv[i]));
 	if (repete_nbrs(nbrs, size) == 1 || limit_value(nbrs, size) == 1)
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 		free(nbrs);
 		delete_lst(a, lst_size(a));
 		exit(1);

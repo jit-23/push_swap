@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 04:31:50 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/20 18:00:12 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:23:21 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,7 @@ void	sa(t_stack **head)
 void	sb(t_stack **head)
 {
 	ft_printf("sb\n");
-	printf("flag222\n");
-
 	swap(head);
-	printf("flag222\n");
-
 }
 
 void	ss(t_stack **a, t_stack **b)
