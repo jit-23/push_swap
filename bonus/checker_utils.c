@@ -6,21 +6,31 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 21:36:38 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/21 00:12:05 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:33:35 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-static void    rotate_both(t_stack **a, t_stack **b)
+
+void	delete_all(t_stack **a, t_stack **b)
 {
-    rotate(a);
+	if ((*a))
+		delete_lst(a, lst_size(a));
+	if ((*b))
+		delete_lst(b, lst_size(b));
+	exit(1);
+}
+
+static void	rotate_both(t_stack **a, t_stack **b)
+{
+	rotate(a);
 	rotate(b);
 }
 
-static void reverse_rotate_both(t_stack **a, t_stack **b)
+static void	reverse_rotate_both(t_stack **a, t_stack **b)
 {
-    reverse_rotate(a);
-    reverse_rotate(b);
+	reverse_rotate(a);
+	reverse_rotate(b);
 }
 
 void	check_move(t_stack **a, t_stack **b, char *cmd)
@@ -29,25 +39,25 @@ void	check_move(t_stack **a, t_stack **b, char *cmd)
 		swap(a);
 	else if (!(ft_strncmp(cmd, "sb\n", sizeof("sb\n"))))
 		swap(b);
-	else if (!(ft_strncmp(cmd, "ra\n",sizeof("ra\n"))))
+	else if (!(ft_strncmp(cmd, "ra\n", sizeof("ra\n"))))
 		rotate(a);
 	else if (!(ft_strncmp(cmd, "rb\n", sizeof("rb\n"))))
 		rotate(b);
 	else if (!(ft_strncmp(cmd, "rr\n", sizeof("rr\n"))))
-        rotate_both(a,b);
+		rotate_both(a, b);
 	else if (!(ft_strncmp(cmd, "rra\n", sizeof("rra\n"))))
 		reverse_rotate(a);
 	else if (!(ft_strncmp(cmd, "rrb\n", sizeof("rrb\n"))))
 		reverse_rotate(b);
 	else if (!(ft_strncmp(cmd, "rrr\n", sizeof("rrr\n"))))
-        reverse_rotate_both(a,b);
+		reverse_rotate_both(a, b);
 	else if (!(ft_strncmp(cmd, "pa\n", sizeof("pa\n"))))
-		push(b,a);
+		push(b, a);
 	else if (!(ft_strncmp(cmd, "pb\n", sizeof("pb\n"))))
-		push(a,b);
+		push(a, b);
 	else
 	{
 		ft_printf("Error\n");
-		exit(1);
+		delete_all(a, b);
 	}
 }
