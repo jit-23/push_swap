@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 03:40:23 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/21 03:21:19 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:20:14 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static int	not_int_util(char **argv, t_index index)
 		if (index.j == 0)
 		{
 			if (ft_isdigit(argv[index.i][index.j]) == 1 ||
-				argv[index.i][index.j] == '-')
+				(argv[index.i][index.j] == '-' &&
+					argv[index.i][index.j + 1] != '\0'))
 				index.j++;
 			else
 				return (1);
@@ -92,7 +93,7 @@ void	handle_args(int size, char **argv, t_stack **a)
 	i = -1;
 	if (not_int(argv) == 1)
 	{
-		ft_printf("Error\n");
+		ft_putstr_fd("Error\n", 2);
 		exit(1);
 	}
 	*a = (t_stack *)malloc(sizeof(t_stack));
@@ -104,7 +105,7 @@ void	handle_args(int size, char **argv, t_stack **a)
 		nbrs[i] = ft_atoll((argv[i]));
 	if (repete_nbrs(nbrs, size) == 1 || limit_value(nbrs, size) == 1)
 	{
-		ft_printf("Error\n");
+		ft_putstr_fd("Error\n", 2);
 		free(nbrs);
 		delete_lst(a, lst_size(a));
 		exit(1);

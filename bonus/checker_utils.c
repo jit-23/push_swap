@@ -6,19 +6,20 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 21:36:38 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/21 14:33:35 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:21:07 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	delete_all(t_stack **a, t_stack **b)
+void	delete_all(t_stack **a, t_stack **b, char *cmd)
 {
+	if (cmd)
+		free(cmd);
 	if ((*a))
 		delete_lst(a, lst_size(a));
 	if ((*b))
 		delete_lst(b, lst_size(b));
-	exit(1);
 }
 
 static void	rotate_both(t_stack **a, t_stack **b)
@@ -57,7 +58,7 @@ void	check_move(t_stack **a, t_stack **b, char *cmd)
 		push(a, b);
 	else
 	{
-		ft_printf("Error\n");
-		delete_all(a, b);
+		ft_putstr_fd("Error\n", 2);
+		return (delete_all(a, b, cmd));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 00:05:45 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/21 14:31:37 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:48:42 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <string.h>
 # include <fcntl.h>
 
-void	delete_all(t_stack **a, t_stack **b);
+void	delete_all(t_stack **a, t_stack **b, char *cmd);
 void	read_line(t_stack **a, t_stack **b);
 void	check_move(t_stack **a, t_stack **b, char *cmd);
 void	push_swap_bonus(t_stack **a, char **args, int argc);

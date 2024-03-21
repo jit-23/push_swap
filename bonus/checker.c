@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 00:07:54 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/21 14:32:18 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:33:33 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ void	read_line(t_stack **a, t_stack **b)
 		if (line)
 		{
 			check_move(a, b, line);
-			free(line);
+			if (line)
+				free(line);
+			if (sorted(*a) || !(*a))
+				break ;
 		}
 	}
-	if (sorted(*a))
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
 }
 
 void	push_swap_bonus(t_stack **a, char **args, int argc)
@@ -51,8 +50,20 @@ int	main(int argc, char **argv)
 		return (0);
 	else
 	{
+		if (argv[1][0] == '\0')
+		{
+			ft_putstr_fd("Error\n", 2);
+			exit(1);
+		}
 		push_swap_bonus(&a, &argv[1], --argc);
 		read_line(&a, &b);
-		delete_all(&a, &b);
+		if (a)
+		{
+			if (sorted(a))
+				ft_putstr_fd(" OK\n", 1);
+			else
+				ft_putstr_fd("KO\n", 1);
+		}
+		delete_all(&a, &b, NULL);
 	}
 }

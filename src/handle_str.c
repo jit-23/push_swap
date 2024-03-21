@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:17:01 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/20 21:24:42 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:20:32 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	handle_string_util(char **arr, long *nbrs, int size, t_stack **a)
 {
 	if (repete_nbrs(nbrs, size) == 1 || limit_value(nbrs, size) == 1)
 	{
-		ft_printf("Error\n");
+		ft_putstr_fd("Error\n", 2);
 		free(nbrs);
 		delete_lst(a, lst_size(a));
 		delete_arr(arr);
@@ -57,7 +57,7 @@ void	handle_string(char *string, t_stack **a)
 	size = ft_count(string, ' ');
 	if (not_int(arr) == 1)
 	{
-		ft_printf("Error\n");
+		ft_putstr_fd("Error\n", 2);
 		delete_arr(arr);
 		exit(1);
 	}
