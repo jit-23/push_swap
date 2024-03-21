@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 03:23:30 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/19 23:28:41 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/21 03:23:08 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <errno.h>
 # include <string.h>
 # include <fcntl.h>
+
+typedef struct s_index
+{
+	int	i;
+	int	j;
+}t_index;
 
 typedef struct s_stack
 {

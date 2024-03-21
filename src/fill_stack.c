@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 18:59:41 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/20 17:30:23 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/21 02:58:29 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,3 @@ void	fill_stack(long *nbrs, t_stack **head, int size)
 	}
 	a->next = NULL;
 }
-	

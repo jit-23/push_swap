@@ -6,7 +6,7 @@
 /*   By: fde-jesu <fde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:02:08 by fde-jesu          #+#    #+#             */
-/*   Updated: 2024/03/20 20:11:21 by fde-jesu         ###   ########.fr       */
+/*   Updated: 2024/03/21 02:59:32 by fde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	push_swap_args(t_stack **a, t_stack **b, int argc)
 		if (argc == 2)
 			sa(a);
 		else if (argc == 3)
-			quick_sort(a);	
+			quick_sort(a);
 		else if (argc > 3)
 			turk(a, b);
 	}
@@ -37,6 +37,7 @@ void	push_swap_string(t_stack **a, t_stack **b, int size)
 			turk(a, b);
 	}
 }
+
 void	push_swap(t_stack **a, t_stack **b, char **args, int argc)
 {
 	if (ft_strchr(args[0], ' '))

@@ -24,15 +24,12 @@ ${NAME} : ${OBJ}
 			${MAKE_LIBFT}
 			cc ${CFLAGS} -I. ${OBJ}  ${LIBFT} -o ${NAME}
 
-
-
-${CHECKER} : ${OBJ_BONUS}
-			cc ${OBJ_BONUS} ${LIBFT} -o ${CHECKER}
-
+#${CHECKER} : ${OBJ_BONUS}
+#			cc ${OBJ_BONUS} ${LIBFT} -o ${CHECKER}
 bonus : ${CHECKER}
 
-#${CHECKER}: ${OBJ_BONUS} 
-#	cc ${CFLAGS}  ${OBJ_BONUS} ${LIBFT} -o ${CHECKER}
+${CHECKER}: ${OBJ_BONUS} 
+	cc ${CFLAGS}  ${OBJ_BONUS} ${LIBFT} -o ${CHECKER}
 
 clean:
 	rm -f ${OBJ}
@@ -44,9 +41,8 @@ fclean: clean
 	rm -f ${CHECKER}
 	${MAKE_LIBFT} fclean
 
-
 re : fclean all
 
-r : fclean all bonus
+bonus_re : fclean all bonus
 
 .PHONY: fclean clean re all bonus
